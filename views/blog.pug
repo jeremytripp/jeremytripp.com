@@ -1,0 +1,9 @@
+extends ./layout.pug
+block content
+    div.masonry
+        each post in posts
+            if (posts.length) <= 10
+                a(href='/blog/' + post.title).post-link(style="display: block;") #[div.tile #[h1 #{post.title}] #[p #{post.description}]]
+            else
+                a(href='/blog/' + post.title).post-link #[div.tile #[h1 #{post.title}] #[p #{post.description}]]
+                //    a(href='/blog/' + post.title).btn.btn-default Read More

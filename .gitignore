@@ -1,0 +1,11 @@
+.idea/inspectionProfiles/
+node_modules/
+.bash_history
+.bash_logout
+.bashrc
+.npm/
+.pm2/
+.profile
+.ssh/
+.viminfo
+.cache/

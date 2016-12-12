@@ -1,0 +1,57 @@
+nav#mainNav.navbar.navbar-default.navbar-fixed-top.mdl-color--blue
+    .container-fluid
+        // Brand and toggle get grouped for better mobile display
+        .navbar-header
+            button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
+                span.sr-only Toggle navigation
+
+                span.icon-bar
+
+                span.icon-bar
+
+                span.icon-bar
+
+            a.navbar-brand.page-scroll(href='/') jeremytripp.com
+        // Collect the nav links, forms, and other content for toggling
+        #bs-example-navbar-collapse-1.collapse.navbar-collapse
+            ul.nav.navbar-nav.navbar-right
+                li
+                    a.nav-text(href='/') Home
+                //Template to add more links to the nav bar
+                //li
+                //    a.page-scroll(href='#about') About
+                li
+                    a.nav-text(href='/blog') Blog
+                li
+                    a.nav-text(href='/weather') Weather
+                //li
+                //    a(href="/auth/facebook") Sign In
+                if user
+                    li
+                        a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+                            //div.nav-circle
+                            //    img.nav-img(src="https://scontent.xx.fbcdn.net/v/t1.0-1/p200x200/13592709_1123906394343651_3669079078801379923_n.jpg?oh=33c51146d940cceef464a275fc8a888e&oe=58D1A086")
+                            //span.caret
+                            div.nav-circle
+                                img.nav-img(src=user.picture)
+                            span.caretIn
+                        ul.dropdown-menu
+                            if (user.roles[0] === "admin")
+                                li
+                                    a(href='/admin') Admin
+                            li
+                                a(href='/account') Profile
+                            li
+                                a(href='/logout') Logout
+                else
+                    li.dropdown
+                        a.dropdown-toggle.nav-text#account(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+                            | Account &nbsp;
+                            span.caretOut
+                        ul.dropdown-menu
+                            li
+                                a(href='/auth/facebook') Sign In
+
+                //  if path === '/'
+                // /.navbar-collapse
+                // /.container-fluid

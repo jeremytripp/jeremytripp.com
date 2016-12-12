@@ -1,0 +1,106 @@
+doctype
+html(lang="en")
+    include partials/_head.pug
+
+    body#page-top
+        //include nav bar
+        include partials/_nav.pug
+        //inject body content
+        block content
+
+        script(src="https://code.jquery.com/jquery-3.1.1.min.js", integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=", crossorigin="anonymous")
+        script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')
+        script(src="/static/js/bootstrap.min.js")
+        script(defer='', src='https://code.getmdl.io/1.2.1/material.min.js')
+        script(src="/static/js/jquery.easing.min.js")
+        script(src="/static/js/jquery.fittext.js")
+        script(src="/static/js/wow.min.js")
+        if path === '/new-post'
+            script(src='//cdn.tinymce.com/4/tinymce.min.js')
+            script.
+                tinymce.init({
+                    selector: 'textarea',
+                    forced_root_block : 'false',
+                    skin_url: '/static/css/tinymce-material',
+                    plugins: "autoresize",
+                    autoresize_bottom_margin: 10,
+                    autoresize_max_height: 500,
+                    setup:function(editor) {
+                        editor.on('focus', function (e) {
+                            document.getElementById("body-title").className =
+                                document.getElementById("body-title").className
+                                    .replace(new RegExp('(?:^|\\s)' + 'post-label' + '(?:\\s|$)'), ' ');
+                            var bodyTitle = document.getElementById("body-title");
+                            bodyTitle.classList.add("post-label-active");
+                            document.getElementById("mceu_28-body").style.borderBottom = "2px solid #2196f3";
+                        });
+                        editor.on('blur', function (e) {
+                            if (editor.getContent() === "") {
+                                document.getElementById("body-title").className =
+                                    document.getElementById("body-title").className
+                                        .replace(new RegExp('(?:^|\\s)' + 'post-label-active' + '(?:\\s|$)'), ' ');
+                                var bodyTitle = document.getElementById("body-title");
+                                bodyTitle.classList.add("post-label");
+                                document.getElementById("mceu_28-body").style.borderBottom = "1px solid rgba(0,0,0,.12)";
+                            } else {
+                                document.getElementById("mceu_28-body").style.borderBottom = "1px solid rgba(0,0,0,.12)";
+                            }
+                        });
+                    }
+                });
+            script(src="/static/js/newPost.js")
+        if includeEdit === true
+            script(src='//cdn.tinymce.com/4/tinymce.min.js')
+            script.
+                    tinymce.init({
+                        selector: 'textarea',
+                        skin_url: '/static/css/tinymce-material',
+                        forced_root_block: 'false',
+                        plugins: "autoresize",
+                        autoresize_bottom_margin: 0,
+                        autoresize_max_height: 500,
+                        init_instance_callback: function (editor) {
+                            editor.setContent("#{post.body}");
+                        },
+                        setup: function (editor) {
+                            editor.on('focus', function (e) {
+                                document.getElementById("body-title").className =
+                                    document.getElementById("body-title").className
+                                        .replace(new RegExp('(?:^|\\s)' + 'post-label' + '(?:\\s|$)'), ' ');
+                                var bodyTitle = document.getElementById("body-title");
+                                bodyTitle.classList.add("post-label-active");
+                                document.getElementById("mceu_28-body").style.borderBottom = "2px solid #2196f3";
+                            });
+                            editor.on('blur', function (e) {
+                                if (editor.getContent() === "") {
+                                    document.getElementById("body-title").className =
+                                        document.getElementById("body-title").className
+                                            .replace(new RegExp('(?:^|\\s)' + 'post-label-active' + '(?:\\s|$)'), ' ');
+                                    var bodyTitle = document.getElementById("body-title");
+                                    bodyTitle.classList.add("post-label");
+                                    document.getElementById("mceu_28-body").style.borderBottom = "1px solid rgba(0,0,0,.12)";
+                                } else {
+                                    document.getElementById("mceu_28-body").style.borderBottom = "1px solid rgba(0,0,0,.12)";
+                                }
+                            });
+                        }
+                    });
+            script(src="/static/js/editPost.js")
+        if path === '/admin'
+            script(type="text/javascript").
+                $("input:checkbox").on('click', function () {
+                    // in the handler, 'this' refers to the box clicked on
+                    var $box = $(this);
+                    if ($box.is(":checked")) {
+                        // the name of the box is retrieved using the .attr() method
+                        // as it is assumed and expected to be immutable
+                        var group = "input:checkbox[name='" + $box.attr("name") + "']";
+                        // the checked state of the group/box on the other hand will change
+                        // and the current value is retrieved using .prop() method
+                        $(group).prop("checked", false);
+                        $box.prop("checked", true);
+                    } else {
+                        $box.prop("checked", false);
+                    }
+                });
+            script(src="/static/js/admin.js")

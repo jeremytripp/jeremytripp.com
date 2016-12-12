@@ -1,0 +1,13 @@
+extends ./layout.pug
+block content
+    .post
+        .container
+            .row
+                div
+                    h2.section-heading #{post.title}
+
+                    p #{post.author}
+
+                    p.text-faded #{post.body}
+                    //.article
+                    //    | #{post.description}

@@ -1,0 +1,9 @@
+extends ./layout.pug
+block content
+    h1 Welcome, #{user.first_name}
+    div.profile.circle
+        //img(src="https://scontent.xx.fbcdn.net/v/t1.0-1/p200x200/15032743_1331451353556061_365793205107958185_n.jpg?oh=9482035de7d719cc3291695447526dd7&oe=58C9CBE0")
+        img(src=user.picture)
+    if (user.roles[0] === "admin")
+        p #[a(href="/admin") Admin Dashboard]
+    p You are logged in. #[a(href="/logout") Logout]

@@ -1,0 +1,11 @@
+extends ./layout.pug
+block content
+        if (summary !== "")
+                p #[i(class="wi weather " + icon)] #{condition}
+                p.temp #{temp}&#176;
+                p H #[strong #{highTemp}&#176;]&emsp; L #[strong #{lowTemp}&#176;]
+                p #{summary}
+        else
+                p #[i(class="wi weather " + icon)] #{condition}
+                p.temp #{temp}&#176;
+                p Currently #[span(class="toLowerCase") #{condition}] in #{city}.

@@ -1,0 +1,50 @@
+extends ./layout.pug
+block content
+    h1 Admin Dashboard
+    p
+        img.profile.circle(src=user.picture)
+        .widget.col-md-12
+            legend Hue
+                table.col-md-12.mdl-data-table(style="margin-top: 20px;")
+                    - if (typeof lightsList === 'undefined' || lightsList === null) {
+                        - for (var i = 0; i < lightsObject.lights.length; i++) {
+                        tr
+                            td.align-left.list #{lightsObject.lights[i].name}
+                            td.col-xs-2.modify-link
+                                label.mdl-switch.mdl-js-switch.mdl-js-ripple-effect(for='toggle' + i)
+                                    input.mdl-switch__input(id="toggle" + i, type='checkbox', name=lightsObject.lights[i].name, value=lightsObject.lights[i].id, onchange="setLightState(this)", checked=lightsObject.lights[i].state.on)
+                        - }
+                    - } else {
+                        - var i = 0;
+                        - for (var light in lightsList) {
+                        - i++;
+                        tr
+                            td.align-left.list #{lightsList[light].name}
+                            td.col-xs-2.modify-link
+                                label.mdl-switch.mdl-js-switch.mdl-js-ripple-effect(for='toggle' + i)
+                                    input.mdl-switch__input(id="toggle" + i, type='checkbox', name=lightsList[light].name, value=i, onchange="setLightState(this)", checked=lightsList[light].state)
+                        - }
+                    - }
+        .widget.col-md-12
+            legend Blog Posts
+            table.col-md-12.mdl-data-table
+                tbody
+                    each post in posts
+                        tr
+                            td.align-left #[a.block(href="/blog/" + post.title) #{post.title}]
+                            td.col-xs-2.modify-link #[a(href='/edit-post/' + post.title) #[i.material-icons.md-dark edit]] #[a(href='/delete/' + post.title + '?_method=DELETE') #[i.material-icons.md-dark delete]]
+        a.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--accent(style="float: right;", href="/new-post", role="button") New Post
+        br
+        .widget.col-md-12
+            form
+                legend Weather Service
+                .form-check
+                    label.form-check-label.mdl-radio.mdl-js-radio.mdl-js-ripple-effect
+                        input.form-check-input.mdl-radio__button(type='radio', name='group', value='Dark Sky', onclick="setWeatherService('Dark Sky')" checked=isDarkSky)
+                        |         Dark Sky
+                .form-check
+                    label.form-check-label.mdl-radio.mdl-js-radio.mdl-js-ripple-effect
+                        input.form-check-input.mdl-radio__button(type='radio', name='group', value='OpenWeather', onclick="setWeatherService('OpenWeather')" checked=!isDarkSky)
+                        |         OpenWeather
+
+

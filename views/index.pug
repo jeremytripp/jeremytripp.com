@@ -1,0 +1,12 @@
+extends ./layout.pug
+block content
+    if user
+        .tile-no-hover.col-xs-4
+            h1 Hello, #{user.first_name}
+                p Welcome to your dashboard.
+    else
+        h1 Hello
+        p Welcome to the dashboard. There's nothing here because I haven't built it yet.
+                |  Please&nbsp;
+                a(href='/auth/facebook') sign in
+                |.

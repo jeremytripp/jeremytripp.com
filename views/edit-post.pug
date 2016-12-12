@@ -1,0 +1,25 @@
+extends ./layout.pug
+block content
+    .mdl-snackbar.mdl-js-snackbar(aria-live='assertive', aria-atomic='true', aria-relevant='text')
+        .mdl-snackbar__text
+        button.mdl-snackbar__action(type='button')
+    h1 Edit #{post.title}
+    form
+        .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+            input#title-input.mdl-textfield__input(type='text', value=post.title, name="title")
+            label.mdl-textfield__label(for='title-input') Title
+            span.has-danger.mdl-textfield__error Please enter a title
+        .form-group.row
+            if post.body != ""
+                label#body-title.col-xs-1.col-form-label.post-label-active(for='body-input') Body
+            else
+                label#body-title.col-xs-1.col-form-label.post-label(for='body-input') Body
+            .col-xs-12
+                textarea#body-input(name="body")
+        .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+            input#description-input.mdl-textfield__input(type='text', value=post.description, name="description")
+            label.mdl-textfield__label(for='description-input') Description
+        input#date(name='date', style="display:none;")
+        input#author(name='author', style="display:none;")
+        input#_id(name='_id', value=post._id, style="display:none;")
+        input.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--accent.submit(type='submit', value='Save', id="submit")
