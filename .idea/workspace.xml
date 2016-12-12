@@ -255,7 +255,7 @@
       <workItem from="1477153695114" duration="6318000" />
       <workItem from="1477239543739" duration="131100000" />
       <workItem from="1479177927478" duration="247000" />
-      <workItem from="1479243642933" duration="167224000" />
+      <workItem from="1479243642933" duration="167602000" />
     </task>
     <task id="LOCAL-00056" summary="Fixed caret for Profile and Account in nav bar">
       <created>1479318279413</created>
@@ -604,7 +604,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2000000" />
+    <option name="totallyTimeSpent" value="2378000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="8" y="25" width="1262" height="751" extended-state="0" />
