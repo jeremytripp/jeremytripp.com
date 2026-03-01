@@ -1,0 +1,30 @@
+{
+  "name": "jtripp",
+  "version": "1.0.0",
+  "description": "jeremytripp.com",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "/Users/jeremytripp/jtripp/.git/"
+  },
+  "author": "Jeremy Tripp",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^3.21.2",
+    "express-session": "^1.14.1",
+    "method-override": "^2.3.6",
+    "mongoose": "latest",
+    "morgan": "^1.7.0",
+    "multer": "^1.2.0",
+    "node-hue-api": "^2.3.0",
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1",
+    "pug": "^2.0.0-beta6",
+    "request": "^2.76.0"
+  }
+}
