@@ -10,10 +10,13 @@ export default async function HomePage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-16">
       {auth?.user ? (
-        <div>
-          <h1 className="text-3xl font-semibold">Hello, {firstName ?? 'there'}</h1>
-          <p className="mt-2 text-zinc-600 dark:text-zinc-400">Welcome to your dashboard.</p>
-        </div>
+        <>
+          <div>
+            <h1 className="text-3xl font-semibold">Hello, {firstName ?? 'there'}</h1>
+            <p className="mt-2 text-zinc-600 dark:text-zinc-400">Welcome to your dashboard.</p>
+          </div>
+          <WeatherWidget />
+        </>
       ) : (
         <div>
           <h1 className="text-3xl font-semibold">Hello</h1>
@@ -23,7 +26,6 @@ export default async function HomePage() {
           </p>
         </div>
       )}
-      <WeatherWidget />
     </div>
   );
 }
