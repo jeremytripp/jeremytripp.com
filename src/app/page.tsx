@@ -1,31 +1,27 @@
-import Link from 'next/link';
 import { getCurrentUserWithProfile } from '@/lib/auth';
 import { WeatherWidget } from '@/components/WeatherWidget';
+import { Portfolio } from '@/components/portfolio/Portfolio';
 
 export default async function HomePage() {
   const auth = await getCurrentUserWithProfile();
   const profile = auth?.profile;
   const firstName = profile?.full_name?.split(' ')[0];
 
-  return (
-    <div className="mx-auto max-w-3xl px-4 py-16">
-      {auth?.user ? (
-        <>
-          <div>
-            <h1 className="text-3xl font-semibold">Hello, {firstName ?? 'there'}</h1>
-            <p className="mt-2 text-zinc-600 dark:text-zinc-400">Welcome to your dashboard.</p>
-          </div>
-          <WeatherWidget />
-        </>
-      ) : (
+  if (auth?.user) {
+    return (
+      <div className="mx-auto max-w-3xl px-4 py-16">
         <div>
-          <h1 className="text-3xl font-semibold">Hello</h1>
+          <h1 className="text-3xl font-semibold">
+            Hello, {firstName ?? 'there'}
+          </h1>
           <p className="mt-2 text-zinc-600 dark:text-zinc-400">
-            Welcome to the dashboard. There&apos;s nothing here because I haven&apos;t built it yet. Please{' '}
-            <Link href="/login" className="text-blue-600 underline dark:text-blue-400">sign in</Link>.
+            Welcome to your dashboard.
           </p>
         </div>
-      )}
-    </div>
-  );
+        <WeatherWidget />
+      </div>
+    );
+  }
+
+  return <Portfolio />;
 }
