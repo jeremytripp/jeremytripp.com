@@ -1,8 +1,12 @@
 @import "tailwindcss";
 
+/* Use class-based dark mode so we can force dark theme on all devices (html.dark). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Always use dark theme for consistent look across devices (no prefers-color-scheme). */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a0a;
+  --foreground: #ededed;
 }
 
 @theme inline {
@@ -10,13 +14,6 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 html {
