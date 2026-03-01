@@ -37,7 +37,7 @@ Rebuilt with Next.js 14+ (App Router), TypeScript, Tailwind CSS, and Supabase. T
 
 - Connect the repo to Vercel.
 - Set the same env vars in the Vercel project.
-- Add your production URL (e.g. `https://jeremytripp.com`) to Supabase Redirect URLs and as Site URL.
+- **Auth redirects**: In Vercel, set `NEXT_PUBLIC_SITE_URL` to your live URL (e.g. `https://jeremytripp.com`) so sign-in redirects stay on your domain. In Supabase → Authentication → URL Configuration, set **Site URL** to that same URL and add `https://jeremytripp.com/auth/callback` to **Redirect URLs** (in addition to any localhost URLs for local dev).
 
 ## Features
 

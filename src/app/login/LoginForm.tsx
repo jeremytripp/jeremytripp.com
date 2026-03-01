@@ -6,10 +6,14 @@ export function LoginForm() {
   const supabase = createClient();
 
   const handleGoogleSignIn = async () => {
-    const origin = typeof window !== 'undefined' ? window.location.origin : '';
+    // Use current origin so we never redirect back to localhost when user is on production.
+    // Supabase will only redirect here if this URL is in Dashboard → Auth → URL Configuration → Redirect URLs.
+    const origin =
+      typeof window !== 'undefined' ? window.location.origin : '';
+    const redirectTo = `${origin}/auth/callback`;
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
-      options: { redirectTo: `${origin}/auth/callback` },
+      options: { redirectTo },
     });
     if (error) {
       console.error(error);
