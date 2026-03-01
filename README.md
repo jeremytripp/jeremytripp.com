@@ -37,7 +37,11 @@ Rebuilt with Next.js 14+ (App Router), TypeScript, Tailwind CSS, and Supabase. T
 
 - Connect the repo to Vercel.
 - Set the same env vars in the Vercel project.
-- **Auth redirects**: In Vercel, set `NEXT_PUBLIC_SITE_URL` to your live URL (e.g. `https://jeremytripp.com`) so sign-in redirects stay on your domain. In Supabase → Authentication → URL Configuration, set **Site URL** to that same URL and add `https://jeremytripp.com/auth/callback` to **Redirect URLs** (in addition to any localhost URLs for local dev).
+- **Auth redirects**: In Supabase → **Authentication** → **URL Configuration**:
+  - Set **Site URL** to your production URL (e.g. `https://jeremytripp.com`). If this stays as `http://localhost:3000`, Supabase will send users to localhost after OAuth.
+  - Under **Redirect URLs**, add exactly `https://jeremytripp.com/auth/callback` (and keep `http://localhost:3000/auth/callback` for local dev). The app sends this URL as `redirectTo`; Supabase only redirects there if it’s in this list.
+- Optional: In Vercel, set `NEXT_PUBLIC_SITE_URL` to `https://jeremytripp.com` so server-side code knows the canonical URL.
+- **If you’re still redirected to localhost after sign-in**: Supabase is falling back to **Site URL** because the `redirectTo` URL wasn’t allowed. Set **Site URL** in URL Configuration to `https://jeremytripp.com` (not localhost). You can confirm what the app sends by opening `/login?debug=1` on production and checking the “Redirect URL sent to Supabase” line.
 
 ## Features
 
