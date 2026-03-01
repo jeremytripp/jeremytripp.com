@@ -88,6 +88,8 @@ html(lang="en")
             script(src="/static/js/editPost.js")
         if path === '/admin'
             script(type="text/javascript").
+                window.IFTTT_MAKER_KEY = !{JSON.stringify(typeof iftttMakerKey !== 'undefined' ? iftttMakerKey : '')};
+            script(type="text/javascript").
                 $("input:checkbox").on('click', function () {
                     // in the handler, 'this' refers to the box clicked on
                     var $box = $(this);

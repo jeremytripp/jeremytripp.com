@@ -1,7 +1,8 @@
 var request = require('request');
 var cityid = "5128581";
 var units = "imperial";
-var OWkey = "463213179d9637496377d4ead1cc7f08";
+// Set OPENWEATHER_API_KEY in environment; do not commit keys
+var OWkey = process.env.OPENWEATHER_API_KEY || "";
 var temp;
 var city = "New York";
 var condition;
@@ -57,8 +58,9 @@ var OWoptions = {
     qs: {'id': cityid, 'units': units, 'APPID': OWkey}
 };
 
+// Set DARKSKY_API_KEY in environment for Dark Sky; do not commit keys
 var DSoptions = {
-    url: 'https://api.darksky.net/forecast/45419e765b9252c9e340f64f430b0189/40.779265,-73.948631',
+    url: 'https://api.darksky.net/forecast/' + (process.env.DARKSKY_API_KEY || '') + '/40.779265,-73.948631',
     method: 'GET',
     headers: headers,
     qs: {'exclude': 'minutely,flags,alerts'}

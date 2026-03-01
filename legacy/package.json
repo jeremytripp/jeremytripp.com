@@ -13,6 +13,7 @@
   "author": "Jeremy Tripp",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.0.0",
     "body-parser": "^1.15.2",
     "cookie-parser": "^1.4.3",
     "express": "^3.21.2",

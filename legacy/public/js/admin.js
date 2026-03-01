@@ -13,7 +13,7 @@ function setLightState(checkbox) {
         lightName = $(checkbox).attr('name');
         // console.log("Turn the light on. ID is " + lightId);
         $.ajax({
-            url: 'https://maker.ifttt.com/trigger/toggle ' + lightName.toLowerCase() + '/with/key/kJcrOl-JvM_-iBmuwbceIZqhsDVT5kWdhDYtSWjgskS',
+            url: 'https://maker.ifttt.com/trigger/toggle ' + lightName.toLowerCase() + '/with/key/' + (window.IFTTT_MAKER_KEY || ''),
             type: 'POST',
             dataType: 'jsonp',
             // data: {lightId: lightId},
@@ -35,7 +35,7 @@ function setLightState(checkbox) {
         lightName = $(checkbox).attr('name');
         // console.log("Turn the light off. ID is " + lightId);
         $.ajax({
-            url: 'https://maker.ifttt.com/trigger/toggle ' + lightName.toLowerCase() + '/with/key/kJcrOl-JvM_-iBmuwbceIZqhsDVT5kWdhDYtSWjgskS',
+            url: 'https://maker.ifttt.com/trigger/toggle ' + lightName.toLowerCase() + '/with/key/' + (window.IFTTT_MAKER_KEY || ''),
             type: 'POST',
             dataType: 'jsonp',
             // data: {lightId: lightId},

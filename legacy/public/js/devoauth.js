@@ -1,8 +1,9 @@
+// Facebook auth (no longer used). Set FACEBOOK_CLIENT_ID and FACEBOOK_CLIENT_SECRET in env if needed.
 var ids = {
     facebook: {
-        clientID: '193024817811473',
-        clientSecret: '004f5cf88acc5da25aed2aa9c1303786',
-        callbackURL: 'http://localhost:3000/auth/facebook/callback'
+        clientID: process.env.FACEBOOK_CLIENT_ID || '',
+        clientSecret: process.env.FACEBOOK_CLIENT_SECRET || '',
+        callbackURL: process.env.FACEBOOK_CALLBACK_URL || 'http://localhost:3000/auth/facebook/callback'
     }
 };
 

@@ -1,5 +1,7 @@
 'use strict';
 
+require('dotenv').config({ path: require('path').join(__dirname, '.env') });
+
 var express    = require('express'),
  getWeather    = require('./public/js/weather.js'),
    mongoose    = require('mongoose'),
@@ -157,9 +159,9 @@ app.get('/admin', ensureAuthenticated, function(req, res) {
                     var postsLists = Object.keys(posts).map(function(value) {
                         return posts[value]});
                     if (err || !doc) {
-                        res.render('admin.pug', {path: path, user: req.user, isDarkSky: true, posts: postsLists, lightsObject: lightsObject });
+                        res.render('admin.pug', {path: path, user: req.user, isDarkSky: true, posts: postsLists, lightsObject: lightsObject, iftttMakerKey: process.env.IFTTT_MAKER_KEY || '' });
                     } else {
-                        res.render('admin.pug', {path: path, user: req.user, isDarkSky: doc.weatherService === "Dark Sky", posts: postsLists, lightsObject: lightsObject});
+                        res.render('admin.pug', {path: path, user: req.user, isDarkSky: doc.weatherService === "Dark Sky", posts: postsLists, lightsObject: lightsObject, iftttMakerKey: process.env.IFTTT_MAKER_KEY || '' });
                     }
                 }
             }
