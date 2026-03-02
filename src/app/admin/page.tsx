@@ -3,6 +3,8 @@ import { requireAdmin } from '@/lib/require-auth';
 import { createClient } from '@/lib/supabase/server';
 import type { AdminSettings } from '@/types/database';
 import { AdminSettingsForm } from './AdminSettingsForm';
+import { ImportBlogPostsButton } from './ImportBlogPostsButton';
+import { FixFormattingButton } from './FixFormattingButton';
 
 export const dynamic = 'force-dynamic';
 
@@ -60,6 +62,8 @@ export default async function AdminPage() {
         {(!posts || posts.length === 0) && (
           <p className="mt-4 text-zinc-500">No posts yet.</p>
         )}
+        <ImportBlogPostsButton />
+        <FixFormattingButton />
       </section>
     </div>
   );

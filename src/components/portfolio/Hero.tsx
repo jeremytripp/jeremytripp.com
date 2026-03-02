@@ -41,7 +41,7 @@ export function Hero() {
           {...fade(0.3)}
           className="mt-4 text-lg font-medium text-zinc-300 sm:text-xl lg:text-2xl"
         >
-          Sr. Director of Technology
+          Sr. Director of Technology • St. Louis CITY SC
         </motion.p>
 
         <motion.p

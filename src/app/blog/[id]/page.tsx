@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
+import { linkify } from '@/lib/linkify';
 import type { Post } from '@/types/database';
 
 export default async function BlogPostPage({
@@ -38,7 +39,7 @@ export default async function BlogPostPage({
       </header>
       <div className="mt-6 prose prose-zinc dark:prose-invert max-w-none">
         {p.body ? (
-          <div className="whitespace-pre-wrap">{p.body}</div>
+          <div className="whitespace-pre-wrap">{linkify(p.body)}</div>
         ) : (
           <p className="text-zinc-500">No content.</p>
         )}
