@@ -25,6 +25,9 @@ export default async function EditPostPage({
 
   async function updatePost(formData: FormData) {
     'use server';
+    const postId = formData.get('id') as string | null;
+    if (!postId?.trim()) return;
+
     const supabase = await createClient();
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) notFound();
@@ -38,7 +41,7 @@ export default async function EditPostPage({
 
     if (!title?.trim()) return;
 
-    await supabase
+    const { error } = await supabase
       .from('posts')
       .update({
         title: title.trim(),
@@ -47,18 +50,20 @@ export default async function EditPostPage({
         author: author?.trim() || null,
         updated_at: new Date().toISOString(),
       })
-      .eq('id', id);
-    redirect('/blog');
+      .eq('id', postId);
+
+    if (error) throw new Error(error.message);
+    redirect('/admin');
   }
 
-  async function deletePost() {
+  async function deletePost(postId: string) {
     'use server';
     const supabase = await createClient();
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return;
     const profileRes = await supabase.from('profiles').select('role').eq('id', user.id).single();
     if (profileRes.data?.role !== 'admin') return;
-    await supabase.from('posts').delete().eq('id', id);
+    await supabase.from('posts').delete().eq('id', postId);
   }
 
   const p = post as Post;
@@ -69,7 +74,7 @@ export default async function EditPostPage({
       <EditPostForm
         post={p}
         action={updatePost}
-        deleteAction={deletePost}
+        deleteAction={deletePost.bind(null, id)}
       />
     </div>
   );

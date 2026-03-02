@@ -32,7 +32,7 @@ export function EditPostForm({ post, action, deleteAction }: Props) {
   async function handleDelete() {
     if (typeof window !== 'undefined' && !window.confirm('Delete this post?')) return;
     await deleteAction();
-    router.push('/blog');
+    router.push('/admin');
     router.refresh();
   }
 
